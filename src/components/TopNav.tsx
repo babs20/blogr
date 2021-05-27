@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PillButton from './PillButton';
 
 const MButton = styled.button`
   background-color: transparent;
@@ -16,8 +17,6 @@ const Chevron = styled.svg`
 `;
 
 const NavContainer = styled.nav`
-  position: relative;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,38 +29,12 @@ const Logo = styled.svg`
 
 const MenuButtonContainer = styled.div`
   display: flex;
-`;
-
-const UserLink = styled.a<{ isSolid: boolean }>`
-  background-color: ${props => (props.isSolid ? '#fff' : 'transparent')};
-  color: ${props => (props.isSolid ? '#ff505c' : '#fff')};
-  line-height: 18px;
-  display: flex;
   align-items: center;
-  font-weight: 700;
-  margin-left: 2rem;
-  border-radius: 28px;
-  padding: ${props => (props.isSolid ? '1rem 2.5rem' : '0')};
-  opacity: ${props => (props.isSolid ? '100%' : '75%')};
 `;
 
 const NavLeftSide = styled.div`
   display: flex;
 `;
-
-const PillButton = ({
-  text,
-  isSolid,
-}: {
-  text: string;
-  isSolid: boolean;
-}): JSX.Element => {
-  return (
-    <UserLink isSolid={isSolid} href='/'>
-      {text}
-    </UserLink>
-  );
-};
 
 const MenuButton = ({ text }: { text: string }): JSX.Element => {
   return (
@@ -99,8 +72,13 @@ export const TopNav = (): JSX.Element => {
         </MenuButtonContainer>
       </NavLeftSide>
       <MenuButtonContainer>
-        <PillButton text='Login' isSolid={false} />
-        <PillButton text='Sign Up' isSolid={true} />
+        <PillButton
+          text='Login'
+          isSolid={false}
+          margin='0 2rem 0 0'
+          textOpacity='0.75'
+        />
+        <PillButton text='Sign Up' isSolid={true} padding='1rem 2.5rem' />
       </MenuButtonContainer>
     </NavContainer>
   );
