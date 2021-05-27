@@ -31,6 +31,8 @@ html {
 	-webkit-text-size-adjust: 100%; /* 2 */
 	-moz-tab-size: 4; /* 3 */
 	tab-size: 4; /* 3 */
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /*
@@ -46,6 +48,7 @@ Sections
 body {
 	margin: 0; /* 1 */
 	font-family:
+	'Ubuntu',
 		system-ui,
 		-apple-system, /* Firefox supports this but not yet 'system-ui' */
 		'Segoe UI',
@@ -55,6 +58,8 @@ body {
 		sans-serif,
 		'Apple Color Emoji',
 		'Segoe UI Emoji'; /* 2 */
+	
+
 }
 
 /*

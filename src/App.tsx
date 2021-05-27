@@ -1,8 +1,8 @@
-import TopNav from './components/TopNav';
+import IntroSection from './components/IntroSection';
 export const App = (): JSX.Element => {
   return (
     <div>
-      <TopNav />
+      <IntroSection />
     </div>
   );
 };
