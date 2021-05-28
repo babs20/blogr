@@ -1,10 +1,6 @@
-import IntroSection from './components/IntroSection';
+import Home from './views/Home';
 export const App = (): JSX.Element => {
-  return (
-    <div>
-      <IntroSection />
-    </div>
-  );
+  return <Home />;
 };
 
 export default App;
