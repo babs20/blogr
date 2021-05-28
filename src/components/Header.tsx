@@ -14,6 +14,7 @@ const BGPattern = styled.svg`
   position: absolute;
   top: 0px;
   left: 0px;
+  width: 100%;
 `;
 
 const HeadingTitle = styled.h1`

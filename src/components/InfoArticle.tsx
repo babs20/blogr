@@ -21,7 +21,7 @@ const ArticleTitle = styled.h2`
 `;
 
 const Article = styled.article`
-  font-family: Overpass, san-sans-serif;
+  font-family: Overpass, sans-serif;
   h3 {
     font-weight: 600;
     font-size: 1.75rem;
@@ -32,7 +32,6 @@ const Article = styled.article`
   p {
     font-weight: 300;
     color: #4c5862;
-    margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
     line-height: 1.75rem;
   }
@@ -44,6 +43,10 @@ const ArticleWrapper = styled.div`
   width: 50%;
   margin-top: 1rem;
   margin-right: 4rem;
+
+  & article:first-child {
+    margin-bottom: 4rem;
+  }
 `;
 
 const Container = styled.div`
