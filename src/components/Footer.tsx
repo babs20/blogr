@@ -12,6 +12,7 @@ const Container = styled.footer`
   padding: 70px 165px;
   justify-content: space-between;
   width: 100%;
+  margin-top: 115px;
 `;
 
 const ListWrapper = styled.ul`
@@ -65,7 +66,7 @@ const ListCategory = ({
         {categoryItems.map((item, index) => {
           return (
             <li key={index}>
-              <a href='/overview'>{item}</a>
+              <a href={`/${item.toLowerCase()}`}>{item}</a>
             </li>
           );
         })}

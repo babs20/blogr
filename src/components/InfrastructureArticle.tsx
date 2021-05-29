@@ -5,7 +5,7 @@ const Section = styled.section`
   height: 400px;
   border-radius: 0px 100px;
   position: relative;
-  margin: 0.5rem 0 115px 0;
+  margin-top: 0.5rem;
   padding: 0 10.25rem;
 `;
 
