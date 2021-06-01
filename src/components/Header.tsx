@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import TopNav from './TopNav';
 import PillButton from './PillButton';
 
+import device from '../styles/breakpoints';
+
 const Header = styled.header`
   height: 37.5rem;
   background: linear-gradient(135deg, #ff8f71 0%, #ff3e55 100%);
@@ -19,18 +21,31 @@ const BGPattern = styled.svg`
 
 const HeadingTitle = styled.h1`
   font-family: 'Overpass', sans-serif;
-  font-weight: 600;
   color: #fff;
-  font-size: 4rem;
-  line-height: 98px;
+  font-weight: 600;
   text-align: center;
+
+  font-size: 2.25rem;
+  line-height: 55.15px;
+  letter-spacing: -1.08px;
+
+  @media ${device.tablet} {
+    font-size: 4rem;
+    line-height: 98px;
+    letter-spacing: -1.92px;
+  }
 `;
 
 const HeadingSubTitle = styled(HeadingTitle)`
   font-weight: 300;
   font-size: 1.25rem;
   line-height: 30px;
-  margin-bottom: 3rem;
+
+  @media ${device.tablet} {
+    font-size: 1.125rem;
+    line-height: 27.58px;
+    text-align: center;
+  }
 `;
 
 const NavContainer = styled.div`
@@ -41,12 +56,22 @@ const HeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7.125rem;
+  margin-top: 6.125rem;
+  padding: 0 1.5rem;
+
+  @media ${device.tablet} {
+    margin-top: 7.125rem;
+  }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 2.375rem;
+
+  @media ${device.tablet} {
+    margin-top: 3rem;
+  }
 `;
 
 export const IntroSection = (): JSX.Element => {
