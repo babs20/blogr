@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PillButton from './PillButton';
+import device from '../styles/breakpoints';
 
 const MButton = styled.button`
   background-color: transparent;
@@ -20,7 +21,13 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 4rem 10.25rem 0 10.25rem;
+  padding: 3.5rem 1.5rem 0 1.5rem;
+
+  @media ${device.tabletL} {
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 10.25rem 0 10.25rem;
+  }
 `;
 
 const Logo = styled.svg`
@@ -28,8 +35,12 @@ const Logo = styled.svg`
 `;
 
 const MenuButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
+  display: none;
+
+  @media ${device.tablet} {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const NavLeftSide = styled.div`
@@ -64,7 +75,6 @@ export const TopNav = (): JSX.Element => {
             fillRule='nonzero'
           />
         </Logo>
-
         <MenuButtonContainer>
           <MenuButton text='Product' />
           <MenuButton text='Company' />
@@ -80,6 +90,17 @@ export const TopNav = (): JSX.Element => {
         />
         <PillButton text='Sign Up' isSolid={true} padding='1rem 2.5rem' />
       </MenuButtonContainer>
+      <svg
+        width='32'
+        height='18'
+        viewBox='0 0 32 18'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <rect width='32' height='2' fill='white' />
+        <rect y='8' width='32' height='2' fill='white' />
+        <rect y='16' width='32' height='2' fill='white' />
+      </svg>
     </NavContainer>
   );
 };
