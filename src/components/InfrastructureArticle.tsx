@@ -96,12 +96,16 @@ const Article = styled.article`
     font-weight: 300px;
     letter-spacing: 0.5px;
     line-height: 28px;
+    margin-top: 10px;
   }
 
   @media ${device.tablet} {
     margin-left: 6.125rem;
     width: 50%;
     text-align: left;
+    p {
+      margin-top: 0;
+    }
   }
 `;
 
