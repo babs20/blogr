@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import device from '../styles/breakpoints';
 
 const Section = styled.section`
   position: relative;
@@ -9,13 +10,67 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1.5rem;
+
+  @media ${device.tablet} {
+    padding-right: 10.25rem;
+    flex-direction: row;
+  }
+`;
+
+const Laptop = styled.svg`
+  display: none;
+
+  @media ${device.tablet} {
+    display: block;
+    width: 50%;
+  }
+`;
+
+const LaptopMobile = styled.svg`
+  display: block;
+
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
+const ArticleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 46px;
+
+  & article:last-child {
+    margin-top: 68px;
+  }
+
+  @media ${device.tablet} {
+    margin-top: 1rem;
+    margin-right: 4rem;
+    width: 50%;
+
+    & article:last-child {
+      margin-top: 4rem;
+    }
+  }
+`;
+
 const Article = styled.article`
   font-family: Overpass, sans-serif;
+  text-align: center;
+
   h3 {
     font-weight: 600;
     font-size: 1.75rem;
     color: #1f3e5a;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 32px;
   }
 
   p {
@@ -24,37 +79,22 @@ const Article = styled.article`
     letter-spacing: 0.5px;
     line-height: 1.75rem;
   }
-`;
 
-const ArticleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-top: 1rem;
-  margin-right: 4rem;
+  @media ${device.tablet} {
+    text-align: left;
 
-  & article:first-child {
-    margin-bottom: 4rem;
+    h3 {
+      line-height: 28px;
+      margin-bottom: 1.5rem;
+    }
   }
-`;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  padding-right: 10.25rem;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const BGCircles = styled.svg`
-  width: 50%;
 `;
 
 export const InfoArticle = () => {
   return (
     <Section>
       <Container>
-        <BGCircles
+        <Laptop
           width='650'
           height='786'
           viewBox='0 0 650 786'
@@ -262,7 +302,238 @@ export const InfoArticle = () => {
               <stop offset='1' stopColor='#FF3E55' />
             </linearGradient>
           </defs>
-        </BGCircles>
+        </Laptop>
+        <LaptopMobile
+          width='328'
+          height='326'
+          viewBox='0 0 328 326'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <g clip-path='url(#clip0)'>
+            <rect
+              opacity='0.08'
+              width='223'
+              height='223'
+              rx='111.5'
+              transform='matrix(1 0 0 -1 53 276)'
+              fill='#2D2E40'
+            />
+            <rect
+              opacity='0.5'
+              x='0.5'
+              y='-0.5'
+              width='251'
+              height='251'
+              rx='125.5'
+              transform='matrix(1 0 0 -1 38 288)'
+              stroke='#2D2E40'
+            />
+            <rect
+              opacity='0.25'
+              x='0.5'
+              y='-0.5'
+              width='325'
+              height='325'
+              rx='162.5'
+              transform='matrix(1 0 0 -1 1 325)'
+              stroke='#2D2E40'
+            />
+            <g filter='url(#filter0_d)'>
+              <rect
+                x='39'
+                y='75'
+                width='252'
+                height='173'
+                rx='12'
+                fill='#535353'
+              />
+              <rect
+                x='40'
+                y='77'
+                width='250'
+                height='170'
+                rx='10'
+                fill='#1D1D25'
+              />
+              <rect
+                x='47'
+                y='83'
+                width='237'
+                height='157.94'
+                rx='3'
+                fill='url(#paint0_linear)'
+              />
+              <mask
+                id='mask0'
+                mask-type='alpha'
+                maskUnits='userSpaceOnUse'
+                x='47'
+                y='83'
+                width='237'
+                height='158'
+              >
+                <rect
+                  x='47'
+                  y='83'
+                  width='237'
+                  height='157.94'
+                  rx='3'
+                  fill='white'
+                />
+              </mask>
+              <g mask='url(#mask0)'>
+                <rect
+                  x='46.8479'
+                  y='111.352'
+                  width='237'
+                  height='129.709'
+                  rx='3'
+                  fill='#F9F6F6'
+                />
+                <rect
+                  x='80.4775'
+                  y='100.615'
+                  width='49.9507'
+                  height='120.635'
+                  rx='3'
+                  fill='white'
+                />
+                <rect
+                  x='138.93'
+                  y='100.615'
+                  width='111.592'
+                  height='120.635'
+                  rx='3'
+                  fill='white'
+                />
+                <rect
+                  x='143.713'
+                  y='107.02'
+                  width='102.027'
+                  height='28.2905'
+                  rx='3'
+                  fill='#E7E7E7'
+                />
+                <rect
+                  x='143.713'
+                  y='141.182'
+                  width='30.2892'
+                  height='28.2905'
+                  rx='3'
+                  fill='#E7E7E7'
+                />
+                <rect
+                  x='181.442'
+                  y='141.182'
+                  width='64.2982'
+                  height='28.2905'
+                  rx='3'
+                  fill='#E7E7E7'
+                />
+              </g>
+              <rect
+                opacity='0.0979818'
+                x='164'
+                y='68'
+                width='6.12'
+                height='1'
+                rx='0.5'
+                fill='#4A5166'
+              />
+              <rect
+                opacity='0.0979818'
+                x='171.56'
+                y='68'
+                width='1.44'
+                height='1'
+                rx='0.5'
+                fill='#4A5166'
+              />
+              <path
+                d='M0 249C0 247.343 1.34315 246 3 246H324.953C326.609 246 327.953 247.343 327.953 249V253.602H0V249Z'
+                fill='#52526F'
+              />
+              <mask
+                id='mask1'
+                mask-type='alpha'
+                maskUnits='userSpaceOnUse'
+                x='0'
+                y='246'
+                width='328'
+                height='8'
+              >
+                <path
+                  d='M0 249C0 247.343 1.34315 246 3 246H324.953C326.609 246 327.953 247.343 327.953 249V253.602H0V249Z'
+                  fill='white'
+                />
+              </mask>
+              <g mask='url(#mask1)'>
+                <rect
+                  x='137.193'
+                  y='227.374'
+                  width='53.5669'
+                  height='23.1871'
+                  rx='10'
+                  fill='#2F2F47'
+                />
+              </g>
+              <path
+                d='M0 254H328C328 255.657 326.657 257 325 257H3C1.34314 257 0 255.657 0 254Z'
+                fill='#393A56'
+              />
+            </g>
+          </g>
+          <defs>
+            <filter
+              id='filter0_d'
+              x='-40'
+              y='48'
+              width='408'
+              height='269'
+              filterUnits='userSpaceOnUse'
+              color-interpolation-filters='sRGB'
+            >
+              <feFlood flood-opacity='0' result='BackgroundImageFix' />
+              <feColorMatrix
+                in='SourceAlpha'
+                type='matrix'
+                values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+              />
+              <feOffset dy='20' />
+              <feGaussianBlur stdDeviation='20' />
+              <feColorMatrix
+                type='matrix'
+                values='0 0 0 0 0.421822 0 0 0 0 0.554338 0 0 0 0 0.89371 0 0 0 0.243444 0'
+              />
+              <feBlend
+                mode='normal'
+                in2='BackgroundImageFix'
+                result='effect1_dropShadow'
+              />
+              <feBlend
+                mode='normal'
+                in='SourceGraphic'
+                in2='effect1_dropShadow'
+                result='shape'
+              />
+            </filter>
+            <linearGradient
+              id='paint0_linear'
+              x1='-71.5'
+              y1='161.97'
+              x2='74.2695'
+              y2='380.707'
+              gradientUnits='userSpaceOnUse'
+            >
+              <stop stop-color='#FF8F71' />
+              <stop offset='1' stop-color='#FF3E55' />
+            </linearGradient>
+            <clipPath id='clip0'>
+              <rect width='328' height='326' fill='white' />
+            </clipPath>
+          </defs>
+        </LaptopMobile>
         <ArticleWrapper>
           <Article>
             <h3>Free, open, simple</h3>
