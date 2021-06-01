@@ -1,59 +1,90 @@
 import styled from 'styled-components';
-
-const Logo = styled.svg`
-  flex-shrink: 0;
-`;
-
-const Container = styled.footer`
-  display: flex;
-  height: 359px;
-  background: #24242c;
-  border-radius: 0px 100px 0px 0px;
-  padding: 70px 165px;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 115px;
-`;
-
-const ListWrapper = styled.ul`
-  color: #fff;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-
-  h2 {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 33px;
-    margin-bottom: 21px;
-  }
-
-  a {
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 33px;
-    opacity: 0.75;
-    text-decoration: none;
-  }
-
-  & a:hover {
-    text-decoration: underline rgba(255, 255, 255, 0.75);
-  }
-`;
-
-const CategoryContainer = styled.li`
-  padding: 0 4rem;
-
-  &:first-child {
-    padding: 0 4rem 0 8rem;
-  }
-`;
+import device from '../styles/breakpoints';
 
 type ListCatergoryProps = {
   name: string;
   categoryItems: Array<string>;
 };
+
+const Container = styled.footer`
+  display: flex;
+  flex-direction: column;
+  background: #24242c;
+  border-radius: 0px 100px 0px 0px;
+  width: 100%;
+  margin-top: 100px;
+  align-items: center;
+  padding: 75px 1.5rem;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 359px;
+    padding: 70px 165px;
+    margin-top: 115px;
+    align-items: flex-start;
+  }
+`;
+
+const Logo = styled.svg`
+  flex-shrink: 0;
+`;
+
+const ListWrapper = styled.ul`
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  margin-top: 72px;
+  font-size: 18px;
+  line-height: 33px;
+
+  h2 {
+    font-weight: 500;
+  }
+
+  a {
+    color: #fff;
+    font-weight: 400;
+    opacity: 0.75;
+    text-decoration: none;
+  }
+
+  ul {
+    margin-top: 21px;
+  }
+
+  & a:hover {
+    text-decoration: underline rgba(255, 255, 255, 0.75);
+  }
+
+  @media ${device.laptop} {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    margin-top: 0;
+    font-size: 15px;
+    align-items: flex-start;
+  }
+`;
+
+const CategoryContainer = styled.li`
+  margin-top: 40px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @media ${device.laptop} {
+    margin: 0 4rem;
+
+    &:first-child {
+      margin: 0 4rem 0 8rem;
+    }
+  }
+`;
 
 const ListCategory = ({
   name,
