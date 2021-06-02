@@ -5,29 +5,29 @@ const Section = styled.section`
   background: linear-gradient(135deg, #2d2e40 0%, #3f4164 100%);
   border-radius: 0px 100px;
   position: relative;
-  height: 625px;
   margin-top: 273px;
-  padding: 0 1.5rem;
 
-  @media ${device.tablet} {
-    padding: 0 10.25rem;
+  @media ${device.laptop} {
     margin-top: 0.5rem;
     height: 400px;
   }
 `;
 
 const Container = styled.div`
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: flex;
     align-items: center;
     top: -49px;
+    max-width: 1110px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 `;
 
 const BGPattern = styled.svg`
   display: none;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: block;
     position: absolute;
     top: 0px;
@@ -43,7 +43,7 @@ const BGPatternMobile = styled.svg`
   width: 100%;
   border-radius: 0px 100px;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: none;
   }
 `;
@@ -54,8 +54,9 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 1.5rem;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -65,7 +66,7 @@ const Content = styled.div`
 
 const Phones = styled.svg`
   display: none;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     position: relative;
     display: inline;
     flex-shrink: 0;
@@ -75,7 +76,7 @@ const Phones = styled.svg`
 const PhonesMobile = styled.svg`
   margin-bottom: 47px;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: none;
   }
 `;
@@ -99,7 +100,7 @@ const Article = styled.article`
     margin-top: 10px;
   }
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     margin-left: 6.125rem;
     width: 50%;
     text-align: left;

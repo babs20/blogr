@@ -40,11 +40,10 @@ const HeadingSubTitle = styled(HeadingTitle)`
   font-weight: 300;
   font-size: 1.25rem;
   line-height: 30px;
+  letter-spacing: unset;
 
   @media ${device.tablet} {
     font-size: 1.125rem;
-    line-height: 27.58px;
-    text-align: center;
   }
 `;
 

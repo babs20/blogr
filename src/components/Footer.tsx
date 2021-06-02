@@ -13,8 +13,13 @@ const Container = styled.footer`
   border-radius: 0px 100px 0px 0px;
   width: 100%;
   margin-top: 100px;
-  align-items: center;
   padding: 75px 1.5rem;
+  align-items: center;
+
+  @media ${device.tablet} {
+    align-items: flex-start;
+    padding: 75px 1.5rem 75px 4rem;
+  }
 
   @media ${device.laptop} {
     flex-direction: row;
@@ -60,12 +65,19 @@ const ListWrapper = styled.ul`
     text-decoration: underline rgba(255, 255, 255, 0.75);
   }
 
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
+    font-size: 15px;
+  }
+
   @media ${device.laptop} {
     flex-direction: row;
     justify-content: flex-start;
     text-align: left;
-    margin-top: 0;
-    font-size: 15px;
+    margin: 0 0 0 8rem;
     align-items: flex-start;
   }
 `;
@@ -77,11 +89,11 @@ const CategoryContainer = styled.li`
     margin-top: 0;
   }
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     margin: 0 4rem;
 
     &:first-child {
-      margin: 0 4rem 0 8rem;
+      margin: 0 4rem 0 0;
     }
   }
 `;

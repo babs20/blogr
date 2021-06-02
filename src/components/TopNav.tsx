@@ -2,6 +2,26 @@ import styled from 'styled-components';
 import PillButton from './PillButton';
 import device from '../styles/breakpoints';
 
+const NavContainer = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.5rem 1.5rem 0 1.5rem;
+  margin: 0 auto;
+  max-width: 640px;
+
+  @media ${device.tabletL} {
+    max-width: 768px;
+  }
+
+  @media ${device.laptop} {
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 1.5rem 0 1.5rem;
+    max-width: 1024px;
+  }
+`;
+
 const MButton = styled.button`
   background-color: transparent;
   color: #fff;
@@ -17,27 +37,15 @@ const Chevron = styled.svg`
   margin-left: 0.5rem;
 `;
 
-const NavContainer = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3.5rem 1.5rem 0 1.5rem;
-
-  @media ${device.tabletL} {
-    align-items: center;
-    justify-content: space-between;
-    padding: 4rem 10.25rem 0 10.25rem;
-  }
-`;
-
 const Logo = styled.svg`
   margin-right: 4rem;
+  flex-shrink: 0;
 `;
 
 const MenuButtonContainer = styled.div`
   display: none;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     display: flex;
     align-items: center;
   }
@@ -45,6 +53,13 @@ const MenuButtonContainer = styled.div`
 
 const NavLeftSide = styled.div`
   display: flex;
+`;
+
+const MenuIcon = styled.svg`
+  display: block;
+  @media ${device.laptop} {
+    display: none;
+  }
 `;
 
 const MenuButton = ({ text }: { text: string }): JSX.Element => {
@@ -90,7 +105,7 @@ export const TopNav = (): JSX.Element => {
         />
         <PillButton text='Sign Up' isSolid={true} padding='1rem 2.5rem' />
       </MenuButtonContainer>
-      <svg
+      <MenuIcon
         width='32'
         height='18'
         viewBox='0 0 32 18'
@@ -100,7 +115,7 @@ export const TopNav = (): JSX.Element => {
         <rect width='32' height='2' fill='white' />
         <rect y='8' width='32' height='2' fill='white' />
         <rect y='16' width='32' height='2' fill='white' />
-      </svg>
+      </MenuIcon>
     </NavContainer>
   );
 };
