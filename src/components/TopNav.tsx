@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PillButton from './PillButton';
 import device from '../styles/breakpoints';
 
@@ -28,7 +28,7 @@ const NavContainer = styled.nav`
   }
 `;
 
-const MenuButton = styled.button`
+const MenuButton = styled.button<{ isMenuOpen: boolean }>`
   background-color: transparent;
   color: #fff;
   line-height: 18px;
@@ -38,6 +38,29 @@ const MenuButton = styled.button`
   margin-right: 2rem;
   font-weight: 700;
   cursor: pointer;
+  padding: 0.25rem;
+
+  ${({ isMenuOpen }) =>
+    isMenuOpen &&
+    css`
+      text-decoration: underline;
+      opacity: 100;
+
+      svg {
+        transform: rotate(-180deg);
+      }
+    `}
+
+  svg {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+  }
 
   &:hover {
     opacity: 100;
@@ -130,6 +153,7 @@ const MenuContainer = ({ text }: menuButtonProps): JSX.Element => {
         aria-controls={`id_${textLowerCase}_menu`}
         tabIndex={0}
         onClick={() => setMenuOpen(!isMenuOpen)}
+        isMenuOpen={isMenuOpen}
       >
         {text}
         <Chevron xmlns='http://www.w3.org/2000/svg' width='10' height='7'>
