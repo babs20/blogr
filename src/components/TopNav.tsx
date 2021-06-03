@@ -2,18 +2,10 @@ import styled from 'styled-components';
 import PillButton from './PillButton';
 import device from '../styles/breakpoints';
 
-import { useState } from 'react';
-
-type stateType = {
-  product: boolean;
-  company: boolean;
-  connect: boolean;
-};
+import { useState, useRef, useEffect } from 'react';
 
 type menuButtonProps = {
   text: string;
-  setMenuOpen: React.Dispatch<React.SetStateAction<stateType>>;
-  isMenuOpen: stateType;
 };
 
 const NavContainer = styled.nav`
@@ -106,53 +98,66 @@ const Menu = styled.ul<{ isMenuOpen: boolean }>`
   }
 `;
 
-const MenuContainer = styled.li`
+const MenuList = styled.li`
   position: relative;
-  z-index: 1;
 `;
 
-const MenuItem = ({
-  text,
-  setMenuOpen,
-  isMenuOpen,
-}: menuButtonProps): JSX.Element => {
+const MenuContainer = ({ text }: menuButtonProps): JSX.Element => {
+  const node = useRef<HTMLLIElement>(null);
+  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  });
+
+  const handleOutsideClick = (e: MouseEvent): void => {
+    if (node.current && node.current.contains(e.target as Node)) return;
+    setMenuOpen(false);
+  };
+
   const textLowerCase: string = text.toLowerCase();
 
   return (
-    <MenuButton
-      type='button'
-      aria-controls={`id_${textLowerCase}_menu`}
-      tabIndex={0}
-      onClick={() =>
-        setMenuOpen({
-          product: false,
-          company: false,
-          connect: false,
-          [textLowerCase]: !isMenuOpen[textLowerCase as keyof stateType],
-        })
-      }
-    >
-      {text}
-      <Chevron xmlns='http://www.w3.org/2000/svg' width='10' height='7'>
-        <path
-          fill='none'
-          stroke='#FFF'
-          strokeWidth='2'
-          opacity='.75'
-          d='M1 1l4 4 4-4'
-        />
-      </Chevron>
-    </MenuButton>
+    <MenuList ref={node}>
+      <MenuButton
+        type='button'
+        aria-controls={`id_${textLowerCase}_menu`}
+        tabIndex={0}
+        onClick={() => setMenuOpen(!isMenuOpen)}
+      >
+        {text}
+        <Chevron xmlns='http://www.w3.org/2000/svg' width='10' height='7'>
+          <path
+            fill='none'
+            stroke='#FFF'
+            strokeWidth='2'
+            opacity='.75'
+            d='M1 1l4 4 4-4'
+          />
+        </Chevron>
+      </MenuButton>
+      <Menu isMenuOpen={isMenuOpen} id='id_product_menu'>
+        <li role='none'>
+          <a href='/'>Contact</a>
+        </li>
+        <li role='none'>
+          <a href='/'>Newsletter</a>
+        </li>
+        <li role='none'>
+          <a href='/'>LinkedIn</a>
+        </li>
+      </Menu>
+    </MenuList>
   );
 };
 
 export const TopNav = (): JSX.Element => {
-  const [isMenuOpen, setMenuOpen] = useState<stateType>({
-    product: false,
-    company: false,
-    connect: false,
-  });
-
   return (
     <NavContainer>
       <NavLeftSide>
@@ -164,60 +169,9 @@ export const TopNav = (): JSX.Element => {
           />
         </Logo>
         <MenuBar>
-          <MenuContainer>
-            <MenuItem
-              text='Product'
-              setMenuOpen={setMenuOpen}
-              isMenuOpen={isMenuOpen}
-            />
-            <Menu isMenuOpen={isMenuOpen.product} id='id_product_menu'>
-              <li role='none'>
-                <a href='/'>Contact</a>
-              </li>
-              <li role='none'>
-                <a href='/'>Newsletter</a>
-              </li>
-              <li role='none'>
-                <a href='/'>LinkedIn</a>
-              </li>
-            </Menu>
-          </MenuContainer>
-          <MenuContainer>
-            <MenuItem
-              text='Company'
-              setMenuOpen={setMenuOpen}
-              isMenuOpen={isMenuOpen}
-            />
-            <Menu isMenuOpen={isMenuOpen.company} id='id_company_menu'>
-              <li role='none'>
-                <a href='/'>Contact</a>
-              </li>
-              <li role='none'>
-                <a href='/'>Newsletter</a>
-              </li>
-              <li role='none'>
-                <a href='/'>LinkedIn</a>
-              </li>
-            </Menu>
-          </MenuContainer>
-          <MenuContainer>
-            <MenuItem
-              text='Connect'
-              setMenuOpen={setMenuOpen}
-              isMenuOpen={isMenuOpen}
-            />
-            <Menu isMenuOpen={isMenuOpen.connect} id='id_connect_menu'>
-              <li role='none'>
-                <a href='/'>Contact</a>
-              </li>
-              <li role='none'>
-                <a href='/'>Newsletter</a>
-              </li>
-              <li role='none'>
-                <a href='/'>LinkedIn</a>
-              </li>
-            </Menu>
-          </MenuContainer>
+          <MenuContainer text={'Product'} />
+          <MenuContainer text={'Company'} />
+          <MenuContainer text={'Connect'} />
         </MenuBar>
       </NavLeftSide>
       <MenuBar>
