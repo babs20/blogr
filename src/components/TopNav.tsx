@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 
 type menuButtonProps = {
   text: string;
+  menuLinks: Array<string>;
 };
 
 const NavContainer = styled.nav`
@@ -125,7 +126,7 @@ const MenuList = styled.li`
   position: relative;
 `;
 
-const MenuContainer = ({ text }: menuButtonProps): JSX.Element => {
+const MenuContainer = ({ text, menuLinks }: menuButtonProps): JSX.Element => {
   const node = useRef<HTMLLIElement>(null);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -154,6 +155,7 @@ const MenuContainer = ({ text }: menuButtonProps): JSX.Element => {
         tabIndex={0}
         onClick={() => setMenuOpen(!isMenuOpen)}
         isMenuOpen={isMenuOpen}
+        aria-expanded={isMenuOpen ? 'true' : 'false'}
       >
         {text}
         <Chevron xmlns='http://www.w3.org/2000/svg' width='10' height='7'>
@@ -167,15 +169,13 @@ const MenuContainer = ({ text }: menuButtonProps): JSX.Element => {
         </Chevron>
       </MenuButton>
       <Menu isMenuOpen={isMenuOpen} id='id_product_menu'>
-        <li role='none'>
-          <a href='/'>Contact</a>
-        </li>
-        <li role='none'>
-          <a href='/'>Newsletter</a>
-        </li>
-        <li role='none'>
-          <a href='/'>LinkedIn</a>
-        </li>
+        {menuLinks.map(text => {
+          return (
+            <li role='none'>
+              <a href='/'>{text}</a>
+            </li>
+          );
+        })}
       </Menu>
     </MenuList>
   );
@@ -193,9 +193,24 @@ export const TopNav = (): JSX.Element => {
           />
         </Logo>
         <MenuBar>
-          <MenuContainer text={'Product'} />
-          <MenuContainer text={'Company'} />
-          <MenuContainer text={'Connect'} />
+          <MenuContainer
+            text={'Product'}
+            menuLinks={[
+              'Overview',
+              'Pricing',
+              'Marketplace',
+              'Features',
+              'Integrations',
+            ]}
+          />
+          <MenuContainer
+            text={'Company'}
+            menuLinks={['About', 'Team', 'Blog', 'Careers']}
+          />
+          <MenuContainer
+            text={'Connect'}
+            menuLinks={['Contact', 'Newsletter', 'LinkedIn']}
+          />
         </MenuBar>
       </NavLeftSide>
       <MenuBar>
