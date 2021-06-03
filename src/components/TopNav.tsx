@@ -60,7 +60,6 @@ const MenuButton = styled.button<{ isMenuOpen: boolean }>`
 
   &:focus {
     outline: none;
-    text-decoration: underline;
   }
 
   &:hover {
