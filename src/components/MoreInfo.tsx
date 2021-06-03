@@ -299,7 +299,7 @@ const LaptopSVGMobile = (): JSX.Element => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
-      <g clip-path='url(#clip0)'>
+      <g clipPath='url(#clip0)'>
         <rect
           opacity='0.08'
           width='223'
@@ -467,9 +467,9 @@ const LaptopSVGMobile = (): JSX.Element => {
           width='408'
           height='269'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feColorMatrix
             in='SourceAlpha'
             type='matrix'
@@ -501,8 +501,8 @@ const LaptopSVGMobile = (): JSX.Element => {
           y2='380.707'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#FF8F71' />
-          <stop offset='1' stop-color='#FF3E55' />
+          <stop stopColor='#FF8F71' />
+          <stop offset='1' stopColor='#FF3E55' />
         </linearGradient>
       </defs>
     </LaptopMobile>

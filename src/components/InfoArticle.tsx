@@ -227,8 +227,8 @@ const EditorSVGMobile = (): JSX.Element => {
             id='Path 2'
             d='M131 198C131 198 166.807 141.909 183.964 137.38C201.122 132.851 196.003 179.754 220.708 174.318C245.413 168.882 248.425 121.324 267.111 119.084C285.796 116.843 295.682 160.341 303.844 164.348C312.006 168.356 324 147.016 324 147.016'
             stroke='url(#paint1_linear2)'
-            stroke-width='8'
-            stroke-linecap='round'
+            strokeWidth='8'
+            strokeLinecap='round'
           />
         </g>
       </g>
@@ -240,9 +240,9 @@ const EditorSVGMobile = (): JSX.Element => {
           width='406'
           height='297'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feColorMatrix
             in='SourceAlpha'
             type='matrix'
@@ -274,8 +274,8 @@ const EditorSVGMobile = (): JSX.Element => {
           y2='463.245'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#FF8F71' />
-          <stop offset='1' stop-color='#FF3E55' />
+          <stop stopColor='#FF8F71' />
+          <stop offset='1' stopColor='#FF3E55' />
         </linearGradient>
         <linearGradient
           id='paint1_linear2'
@@ -285,8 +285,8 @@ const EditorSVGMobile = (): JSX.Element => {
           y2='293.826'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#FF8F71' />
-          <stop offset='1' stop-color='#FF3E55' />
+          <stop stopColor='#FF8F71' />
+          <stop offset='1' stopColor='#FF3E55' />
         </linearGradient>
       </defs>
     </BGCirclesMobile>
