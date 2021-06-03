@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const LinkButton = styled.a<{
   isSolid: boolean;
@@ -8,8 +8,8 @@ const LinkButton = styled.a<{
   textOpacity: string;
 }>`
   background-color: ${props => (props.isSolid ? '#fff' : 'transparent')};
-  color: ${props =>
-    props.isSolid ? '#ff505c' : `rgba(255, 255, 255, ${props.textOpacity})`};
+  color: ${({ isSolid, textOpacity }) =>
+    isSolid ? '#ff505c' : `rgba(255, 255, 255, ${textOpacity})`};
   line-height: 18px;
   font-weight: 700;
   border-radius: 28px;
@@ -17,8 +17,29 @@ const LinkButton = styled.a<{
   text-decoration: none;
   width: min-content;
   white-space: nowrap;
-  margin: ${props => props.margin};
-  border: ${props => props.border};
+  margin: ${({ margin }) => margin};
+  border: ${({ border }) => border};
+
+  transition-property: background-color, color;
+  transition-duration: 300ms;
+
+  ${({ isSolid }) =>
+    isSolid &&
+    css`
+      &:hover {
+        color: #fff;
+        background-color: #ff7b86;
+      }
+    `}
+
+  ${({ isSolid }) =>
+    !isSolid &&
+    css`
+      &:hover {
+        color: #ff7b86;
+        background-color: #fff;
+      }
+    `}
 `;
 
 type PillButtonProps = {
