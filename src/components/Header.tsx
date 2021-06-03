@@ -120,7 +120,7 @@ export const IntroSection = (): JSX.Element => {
             <PillButton
               text='Learn More'
               isSolid={false}
-              padding='1rem'
+              padding='1rem 1.5rem'
               border='1px #FFF solid'
             />
           </ButtonContainer>
