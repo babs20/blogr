@@ -32,8 +32,9 @@ const LinkButton = styled.a<{
       }
     `}
 
-  ${({ isSolid }) =>
+  ${({ isSolid, border }) =>
     !isSolid &&
+    border !== '0' &&
     css`
       &:hover {
         color: #ff7b86;
