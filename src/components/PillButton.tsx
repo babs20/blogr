@@ -1,50 +1,52 @@
 import styled, { css } from 'styled-components';
+import device from '../styles/breakpoints';
 
 const LinkButton = styled.a<{
-  isSolid: boolean;
+  background: string;
   padding: string;
   margin: string;
   border: string;
   textOpacity: string;
 }>`
-  background-color: ${props => (props.isSolid ? '#fff' : 'transparent')};
-  color: ${({ isSolid, textOpacity }) =>
-    isSolid ? '#ff505c' : `rgba(255, 255, 255, ${textOpacity})`};
+  background: ${({ background }) => background};
+  color: ${({ background, textOpacity }) =>
+    background === '#fff' ? '#ff505c' : `rgba(255, 255, 255, ${textOpacity})`};
   line-height: 18px;
   font-weight: 700;
   border-radius: 28px;
-  padding: ${props => props.padding};
   text-decoration: none;
   width: min-content;
   white-space: nowrap;
+
+  padding: ${props => props.padding};
   margin: ${({ margin }) => margin};
   border: ${({ border }) => border};
 
   transition-property: background-color, color;
   transition-duration: 300ms;
 
-  ${({ isSolid }) =>
-    isSolid &&
+  ${({ background }) =>
+    background === '#fff' &&
     css`
       &:hover {
         color: #fff;
-        background-color: #ff7b86;
+        background: #ff7b86;
       }
     `}
 
-  ${({ isSolid }) =>
-    !isSolid &&
+  ${({ background }) =>
+    (background === '#ff7b86' || background === 'transparent') &&
     css`
       &:hover {
         color: #ff7b86;
-        background-color: #fff;
+        background: #fff;
       }
     `}
 `;
 
 type PillButtonProps = {
   text: string;
-  isSolid: boolean;
+  background: string;
   padding?: string;
   margin?: string;
   border?: string;
@@ -53,7 +55,7 @@ type PillButtonProps = {
 
 export const PillButton = ({
   text,
-  isSolid,
+  background,
   border = '0',
   padding = '0',
   margin = '0',
@@ -61,7 +63,7 @@ export const PillButton = ({
 }: PillButtonProps): JSX.Element => {
   return (
     <LinkButton
-      isSolid={isSolid}
+      background={background}
       href='/'
       padding={padding}
       margin={margin}

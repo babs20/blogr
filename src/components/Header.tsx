@@ -113,13 +113,13 @@ export const IntroSection = (): JSX.Element => {
           <ButtonContainer>
             <PillButton
               text='Start for Free'
-              isSolid={true}
+              background='#fff'
               padding='1rem'
               margin='0 1rem 0 0'
             />
             <PillButton
               text='Learn More'
-              isSolid={false}
+              background='transparent'
               padding='1rem 1.5rem'
               border='1px #FFF solid'
             />
