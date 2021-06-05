@@ -9,7 +9,6 @@ const Header = styled.header`
   background: linear-gradient(135deg, #ff8f71 0%, #ff3e55 100%);
   border-radius: 0px 0px 0px 100px;
   position: relative;
-  overflow: hidden;
 `;
 
 const BGPattern = styled.svg`
