@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import PillButton from './PillButton';
 import device from '../styles/breakpoints';
+import { useOnOutsideClick } from '../hooks/useOnOutsideClick';
 
 import { useState, useRef, useEffect } from 'react';
 
@@ -30,6 +30,87 @@ const NavContainer = styled.nav`
   }
 `;
 
+const NavLeftSide = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
+`;
+
+const Logo = styled.svg`
+  margin-right: 4rem;
+  flex-shrink: 0;
+`;
+
+const MenuBar = styled.ul`
+  position: absolute;
+  top: 69px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.243444);
+
+  @media ${device.laptop} {
+    position: static;
+    top: 0px;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: none;
+  }
+`;
+
+const MenuLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px #e8e4e4;
+  margin-bottom: 1.5rem;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+    border-bottom: none;
+    margin-bottom: 0rem;
+  }
+`;
+
+const ButtonContainer = styled(MenuLinkContainer)`
+  border-bottom: none;
+  margin-bottom: 0rem;
+
+  & :nth-child(2) {
+    margin-top: 1.5rem;
+  }
+
+  @media ${device.laptop} {
+    & :nth-child(2) {
+      margin-top: 0;
+    }
+  }
+`;
+
+const MenuList = styled.li`
+  position: relative;
+  display: flex;
+  margin-bottom: 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  @media ${device.laptop} {
+    margin-bottom: 0;
+  }
+`;
+
 const MenuButton = styled.button<{ isMenuOpen: boolean }>`
   display: flex;
   justify-content: center;
@@ -37,20 +118,16 @@ const MenuButton = styled.button<{ isMenuOpen: boolean }>`
   cursor: pointer;
   background-color: transparent;
   color: #1f3e5a;
-
-  @media ${device.laptop} {
-    color: #fff;
-    line-height: 18px;
-    opacity: 0.75;
-    margin-right: 2rem;
-    font-weight: 700;
-    padding: 0.25rem;
-  }
+  font-size: 18px;
+  font-family: Overpass, sans-serif;
+  font-weight: 600;
+  line-height: 28px;
 
   ${({ isMenuOpen }) =>
     isMenuOpen &&
     css`
       opacity: 100;
+      margin-bottom: 1.5rem;
 
       svg {
         transform: rotate(-180deg);
@@ -71,6 +148,22 @@ const MenuButton = styled.button<{ isMenuOpen: boolean }>`
   &:hover {
     opacity: 100;
   }
+
+  @media ${device.laptop} {
+    color: #fff;
+    line-height: 18px;
+    opacity: 0.75;
+    margin-right: 2rem;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0.25rem;
+
+    ${({ isMenuOpen }) =>
+      isMenuOpen &&
+      css`
+        margin-bottom: 0;
+      `}
+  }
 `;
 
 const Chevron = styled.svg`
@@ -81,36 +174,113 @@ const Chevron = styled.svg`
   }
 `;
 
-const Logo = styled.svg`
-  margin-right: 4rem;
-  flex-shrink: 0;
-`;
-
-const MenuBar = styled.ul`
-  position: absolute;
-  top: 69px;
-  width: 100%;
+const Menu = styled.ul<{ isMenuOpen: boolean }>`
+  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
+  flex-direction: column;
+  align-items: center;
   background-color: #fff;
   border-radius: 5px;
-  padding: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(45, 46, 64, 0.08);
+
+  li {
+    margin-left: -10px;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+
+  a {
+    font-family: Overpass, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    text-decoration: none;
+    color: rgba(31, 62, 90, 0.75);
+  }
 
   @media ${device.laptop} {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    position: absolute;
+    align-items: flex-start;
+    top: 35px;
+    left: -24px;
+    padding: 1.5rem;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.243444);
+    width: 168px;
+    margin: 0;
+    background-color: #fff;
+
+    li {
+      margin-left: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      font-family: Ubuntu, sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 33px;
+      text-decoration: none;
+      color: #2d2e40;
+    }
+
+    a:hover {
+      font-weight: 700;
+    }
   }
 `;
 
-const NavLeftSide = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+const Button = styled.a`
+  transition: color, background-color 300ms;
+  cursor: pointer;
+`;
+
+const LoginButton = styled(Button)`
+  font-family: Overpass, serif;
+  background-color: transparent;
+  line-height: 28px;
+  color: #1f3e5a;
+  font-size: 18px;
+  font-weight: 600;
 
   @media ${device.laptop} {
-    flex-direction: row;
+    font-family: Ubuntu, serif;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    border-radius: 28px;
+    margin: 0 1rem 0 0;
+    padding: 1rem;
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+`;
+
+const SignUpButton = styled(Button)`
+  font-family: Ubuntu, serif;
+  background: linear-gradient(135deg, #ff8f71 0%, #ff3e55 100%);
+  color: #fff;
+  line-height: 18px;
+  font-weight: 700;
+  border-radius: 28px;
+  padding: 1rem 2.5rem;
+
+  @media ${device.laptop} {
+    background: #fff;
+    color: #ff505c;
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+      background: #ff7b86;
+    }
   }
 `;
 
@@ -125,101 +295,10 @@ const MenuIcon = styled.svg`
   }
 `;
 
-const Menu = styled.ul<{ isMenuOpen: boolean }>`
-  display: ${props => (props.isMenuOpen ? 'block' : 'none')};
-  position: absolute;
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 5px;
-  width: 168px;
-  top: 27px;
-  left: -24px;
-  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.243444);
-
-  a {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 33px;
-    text-decoration: none;
-    color: #2d2e40;
-  }
-
-  a:hover {
-    font-weight: 700;
-  }
-`;
-
-const MenuList = styled.li`
-  position: relative;
-  margin-bottom: 1.5rem;
-`;
-
-const LoginButton = styled.button`
-  font-family: Overpass, serif;
-  background-color: transparent;
-  line-height: 28px;
-  transition: color 300ms;
-  color: #1f3e5a;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-
-  @media ${device.laptop} {
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 700;
-    line-height: 18px;
-    border-radius: 28px;
-    font-size: 1rem;
-    margin: 0 1rem 0 0;
-    padding: 1rem;
-
-    &:hover {
-      color: rgba(255, 255, 255, 1);
-    }
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  @media ${device.laptop} {
-    flex-direction: row;
-  }
-`;
-const MenuLinkContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-bottom: solid 1px #e8e4e4;
-  margin-bottom: 1.5rem;
-
-  @media ${device.laptop} {
-    flex-direction: row;
-  }
-`;
-
 const MenuContainer = ({ text, menuLinks }: menuButtonProps): JSX.Element => {
   const node = useRef<HTMLLIElement>(null);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
-    } else {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    }
-
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
-  });
-
-  const handleOutsideClick = (e: MouseEvent): void => {
-    if (node.current && node.current.contains(e.target as Node)) return;
-    setMenuOpen(false);
-  };
+  useOnOutsideClick(node, setMenuOpen, isMenuOpen);
 
   const textLowerCase: string = text.toLowerCase();
 
@@ -293,12 +372,7 @@ export const TopNav = (): JSX.Element => {
           </MenuLinkContainer>
           <ButtonContainer>
             <LoginButton>Login</LoginButton>
-            <PillButton
-              text='Sign Up'
-              background='linear-gradient(135deg, #FF8F71 0%, #FF3E55 100%)'
-              padding='1rem 2.5rem'
-              margin='1.5rem 0 0 0'
-            />
+            <SignUpButton>Sign Up</SignUpButton>
           </ButtonContainer>
         </MenuBar>
       </NavLeftSide>
