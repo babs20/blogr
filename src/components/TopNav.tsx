@@ -10,6 +10,7 @@ type menuButtonProps = {
 };
 
 const NavContainer = styled.nav`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,16 +31,21 @@ const NavContainer = styled.nav`
 `;
 
 const MenuButton = styled.button<{ isMenuOpen: boolean }>`
-  background-color: transparent;
-  color: #fff;
-  line-height: 18px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  opacity: 0.75;
-  margin-right: 2rem;
-  font-weight: 700;
   cursor: pointer;
-  padding: 0.25rem;
+  background-color: transparent;
+  color: #1f3e5a;
+
+  @media ${device.laptop} {
+    color: #fff;
+    line-height: 18px;
+    opacity: 0.75;
+    margin-right: 2rem;
+    font-weight: 700;
+    padding: 0.25rem;
+  }
 
   ${({ isMenuOpen }) =>
     isMenuOpen &&
@@ -69,6 +75,10 @@ const MenuButton = styled.button<{ isMenuOpen: boolean }>`
 
 const Chevron = styled.svg`
   margin-left: 0.5rem;
+  color: #ff7b86;
+  @media ${device.laptop} {
+    color: #fff;
+  }
 `;
 
 const Logo = styled.svg`
@@ -77,21 +87,39 @@ const Logo = styled.svg`
 `;
 
 const MenuBar = styled.ul`
-  position: relative;
-  display: none;
+  position: absolute;
+  top: 69px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1.5rem;
 
   @media ${device.laptop} {
+    background-color: transparent;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
 `;
 
 const NavLeftSide = styled.div`
+  position: relative;
   display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
 `;
 
 const MenuIcon = styled.svg`
+  position: absolute;
   display: block;
+  right: 24px;
+  top: 64px;
+
   @media ${device.laptop} {
     display: none;
   }
@@ -123,22 +151,54 @@ const Menu = styled.ul<{ isMenuOpen: boolean }>`
 
 const MenuList = styled.li`
   position: relative;
+  margin-bottom: 1.5rem;
 `;
 
 const LoginButton = styled.button`
+  font-family: Overpass, serif;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 18px;
-  font-weight: 700;
-  border-radius: 28px;
-  margin: 0 1rem 0 0;
-  cursor: pointer;
-  padding: 1rem;
-
+  line-height: 28px;
   transition: color 300ms;
+  color: #1f3e5a;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
 
-  &:hover {
-    color: rgba(255, 255, 255, 1);
+  @media ${device.laptop} {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+    line-height: 18px;
+    border-radius: 28px;
+    font-size: 1rem;
+    margin: 0 1rem 0 0;
+    padding: 1rem;
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
+`;
+const MenuLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px #e8e4e4;
+  margin-bottom: 1.5rem;
+
+  @media ${device.laptop} {
+    flex-direction: row;
   }
 `;
 
@@ -174,14 +234,14 @@ const MenuContainer = ({ text, menuLinks }: menuButtonProps): JSX.Element => {
         aria-expanded={isMenuOpen ? 'true' : 'false'}
       >
         {text}
-        <Chevron xmlns='http://www.w3.org/2000/svg' width='10' height='7'>
-          <path
-            fill='none'
-            stroke='#FFF'
-            strokeWidth='2'
-            opacity='.75'
-            d='M1 1l4 4 4-4'
-          />
+        <Chevron
+          width='10'
+          height='10'
+          viewBox='0 0 10 10'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path d='M1 3L5 7L9 3' stroke='currentColor' stroke-width='2' />
         </Chevron>
       </MenuButton>
       <Menu isMenuOpen={isMenuOpen} id='id_product_menu'>
@@ -211,30 +271,37 @@ export const TopNav = (): JSX.Element => {
           </Logo>
         </a>
         <MenuBar>
-          <MenuContainer
-            text={'Product'}
-            menuLinks={[
-              'Overview',
-              'Pricing',
-              'Marketplace',
-              'Features',
-              'Integrations',
-            ]}
-          />
-          <MenuContainer
-            text={'Company'}
-            menuLinks={['About', 'Team', 'Blog', 'Careers']}
-          />
-          <MenuContainer
-            text={'Connect'}
-            menuLinks={['Contact', 'Newsletter', 'LinkedIn']}
-          />
+          <MenuLinkContainer>
+            <MenuContainer
+              text={'Product'}
+              menuLinks={[
+                'Overview',
+                'Pricing',
+                'Marketplace',
+                'Features',
+                'Integrations',
+              ]}
+            />
+            <MenuContainer
+              text={'Company'}
+              menuLinks={['About', 'Team', 'Blog', 'Careers']}
+            />
+            <MenuContainer
+              text={'Connect'}
+              menuLinks={['Contact', 'Newsletter', 'LinkedIn']}
+            />
+          </MenuLinkContainer>
+          <ButtonContainer>
+            <LoginButton>Login</LoginButton>
+            <PillButton
+              text='Sign Up'
+              background='linear-gradient(135deg, #FF8F71 0%, #FF3E55 100%)'
+              padding='1rem 2.5rem'
+              margin='1.5rem 0 0 0'
+            />
+          </ButtonContainer>
         </MenuBar>
       </NavLeftSide>
-      <MenuBar>
-        <LoginButton>Login</LoginButton>
-        <PillButton text='Sign Up' isSolid={true} padding='1rem 2.5rem' />
-      </MenuBar>
       <MenuIcon
         width='32'
         height='18'
