@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import device from '../styles/breakpoints';
 import { useOnOutsideClick } from '../hooks/useOnOutsideClick';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 type menuButtonProps = {
   text: string;
@@ -347,6 +347,14 @@ export const TopNav = (): JSX.Element => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   useOnOutsideClick(node, setMenuOpen, isMenuOpen);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [isMenuOpen]);
+
   return (
     <NavContainer ref={node}>
       <NavLeftSide>
@@ -386,18 +394,38 @@ export const TopNav = (): JSX.Element => {
           </ButtonContainer>
         </MenuBar>
       </NavLeftSide>
-      <MenuIcon
-        width='32'
-        height='18'
-        viewBox='0 0 32 18'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-        onClick={() => setMenuOpen(!isMenuOpen)}
-      >
-        <rect width='32' height='2' fill='white' />
-        <rect y='8' width='32' height='2' fill='white' />
-        <rect y='16' width='32' height='2' fill='white' />
-      </MenuIcon>
+      {!isMenuOpen && (
+        <MenuIcon
+          width='32'
+          height='18'
+          fill='none'
+          viewBox='0 0 32 18'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => {
+            setMenuOpen(true);
+          }}
+        >
+          <rect width='32' height='2' fill='white' />
+          <rect y='8' width='32' height='2' fill='white' />
+          <rect y='16' width='32' height='2' fill='white' />
+        </MenuIcon>
+      )}
+      {isMenuOpen && (
+        <MenuIcon
+          width='26'
+          height='26'
+          xmlns='http://www.w3.org/2000/svg'
+          onClick={() => {
+            setMenuOpen(false);
+          }}
+        >
+          <path
+            d='M23.607.98l1.414 1.413L14.414 13l10.607 10.607-1.414 1.414L13 14.414 2.393 25.021.98 23.607 11.586 13 .98 2.393 2.393.98 13 11.586 23.607.98z'
+            fill='#FFF'
+            fill-rule='evenodd'
+          />
+        </MenuIcon>
+      )}
     </NavContainer>
   );
 };
