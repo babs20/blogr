@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Blogr landing page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Site URL: [Blogr](https://blogr-babs.netlify.app/)
 
-## Available Scripts
+This is a solution to the [Blogr landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/blogr-landing-page-EX2RLAApP). I wanted to get more experience in building designs from mockups in Figma, and ended up finding lots of projects just like this on Front End mentor. This helped me from stressing about designing everything from the ground up, so I could just focus on practicing my front end dev skills!
 
-In the project directory, you can run:
+## Table of contents
 
-### `yarn start`
+- [Overview](#overview)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Summary](#what-i-learned)
+- [Author](#author)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Overview
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Screenshot
 
-### `yarn test`
+![](./docs/fullpage.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Links
 
-### `yarn build`
+- Live Site URL: [Blogr](https://blogr-babs.netlify.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## My process
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Built with
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Semantic HTML5 markup
+- CSS
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Styled Components](https://styled-components.com/) - For styles
 
-### `yarn eject`
+### Summary
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+One of the things I learned about more during this exercise was the `display` CSS property. Mainly when using the `display: relative;` and the `display: absolute;`. When using a lot of stacking context, it was important to have good understanding of the property and how each element will be affected when it is used on its parent or child elements.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+One challenge I faced during development was in the figma design itself. It was not very consistent in its spacing and most of the time it felt completely random what margin or padding was used between and in elements. This felt very sloppy since it was not adhering to some type of design system. Although, I enjoyed the challenge of working around this inconvience.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This was the first time using [Styled Components](https://styled-components.com/) after being stuck on the [TailwindCSS](https://tailwindcss.com/) train for my last couple of projects. I found this a good middle ground between CSS in stylesheets and the easy and fast paced nature of Tailwind which I enjoy so much. I know Tailwind is a bit of controversial thing in the dev world since some believe it clutters the HTML markup, so I took this opportunity to grow my CSS knowledge using another popular CSS solution.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Author
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Website - [Brady Blair](https://bradyblair.netlify.app/)
+- LinkedIn - [Brady Blair](https://www.linkedin.com/in/bradyblair20/)
