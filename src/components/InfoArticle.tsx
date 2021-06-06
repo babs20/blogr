@@ -351,7 +351,7 @@ const EditorSVGDesktop = (): JSX.Element => {
       >
         <rect x='40' y='242' width='642' height='427' rx='15' fill='white' />
       </mask>
-      <g mask='url(#mask0)'>
+      <g>
         <path
           d='M40 370C40 368.343 41.3431 367 43 367H679C680.657 367 682 368.343 682 370V666C682 667.657 680.657 669 679 669H43C41.3431 669 40 667.657 40 666V370Z'
           fill='#2D2E40'
