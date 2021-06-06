@@ -35,20 +35,22 @@ const NavLeftSide = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   @media ${device.laptop} {
     flex-direction: row;
+    align-items: center;
   }
 `;
 
 const Logo = styled.svg`
-  margin-right: 4rem;
   flex-shrink: 0;
-  width: min-content;
 `;
 
 const LogoLink = styled.a`
-  width: min-content;
+  max-width: 101px;
+  margin-right: 4rem;
+  height: 40px;
 `;
 
 const MenuBar = styled.ul<{ isMenuOpen: boolean }>`
@@ -294,7 +296,7 @@ const MenuIcon = styled.svg`
   position: absolute;
   display: block;
   right: 24px;
-  top: 64px;
+  top: 3.5rem;
 
   @media ${device.laptop} {
     display: none;
@@ -326,7 +328,7 @@ const MenuContainer = ({ text, menuLinks }: menuButtonProps): JSX.Element => {
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <path d='M1 3L5 7L9 3' stroke='currentColor' stroke-width='2' />
+          <path d='M1 3L5 7L9 3' stroke='currentColor' strokeWidth='2' />
         </Chevron>
       </MenuButton>
       <Menu isMenuOpen={isMenuOpen} id='id_product_menu'>
@@ -396,34 +398,40 @@ export const TopNav = (): JSX.Element => {
       </NavLeftSide>
       {!isMenuOpen && (
         <MenuIcon
-          width='32'
-          height='18'
+          width='40'
+          height='40'
+          viewBox='0 0 40 40'
           fill='none'
-          viewBox='0 0 32 18'
           xmlns='http://www.w3.org/2000/svg'
           onClick={() => {
             setMenuOpen(true);
           }}
         >
-          <rect width='32' height='2' fill='white' />
-          <rect y='8' width='32' height='2' fill='white' />
-          <rect y='16' width='32' height='2' fill='white' />
+          <rect x='4' y='11' width='32' height='2' fill='white' />
+          <rect x='4' y='19' width='32' height='2' fill='white' />
+          <rect x='4' y='27' width='32' height='2' fill='white' />
         </MenuIcon>
       )}
       {isMenuOpen && (
         <MenuIcon
-          width='26'
-          height='26'
+          width='40'
+          height='40'
+          viewBox='0 0 40 40'
+          fill='none'
           xmlns='http://www.w3.org/2000/svg'
           onClick={() => {
             setMenuOpen(false);
           }}
         >
-          <path
-            d='M23.607.98l1.414 1.413L14.414 13l10.607 10.607-1.414 1.414L13 14.414 2.393 25.021.98 23.607 11.586 13 .98 2.393 2.393.98 13 11.586 23.607.98z'
-            fill='#FFF'
-            fill-rule='evenodd'
-          />
+          <g id='Frame'>
+            <path
+              id='Combined Shape'
+              fillRule='evenodd'
+              clipRule='evenodd'
+              d='M20.0001 18.5858L9.39346 7.97919L7.97925 9.3934L18.5858 20L7.97925 30.6066L9.39346 32.0208L20.0001 21.4142L30.6067 32.0208L32.0209 30.6066L21.4143 20L32.0209 9.3934L30.6067 7.97919L20.0001 18.5858Z'
+              fill='white'
+            />
+          </g>
         </MenuIcon>
       )}
     </NavContainer>
