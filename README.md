@@ -36,7 +36,7 @@ This is a solution to the [Blogr landing page challenge on Frontend Mentor](http
 
 ### Summary
 
-One of the things I learned about more during this exercise was the `display` CSS property. Mainly when using the `display: relative;` and the `display: absolute;`. When using a lot of stacking context, it was important to have good understanding of the property and how each element will be affected when it is used on its parent or child elements.
+One of the things I learned about more during this exercise was the `display` CSS property. Mainly when using the `display: relative;` and `display: absolute;`. When using a lot of stacking context, it was important to have good understanding of the property and how each element will be affected when it is used on its parent or child elements.
 
 One challenge I faced during development was in the figma design itself. It was not very consistent in its spacing and most of the time it felt completely random what margin or padding was used between and in elements. This felt very sloppy since it was not adhering to some type of design system. Although, I enjoyed the challenge of working around this inconvience.
 
