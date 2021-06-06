@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import device from '../styles/breakpoints';
 
 const LinkButton = styled.a<{
   background: string;
